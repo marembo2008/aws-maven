@@ -89,14 +89,20 @@
   </dependencies>
 
   <build>
-    <extensions>
-      <extension>
-        <groupId>org.springframework.build</groupId>
-        <artifactId>aws-maven</artifactId>
-        <version>5.1.0.BUILD-SNAPSHOT</version>
-      </extension>
-    </extensions>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -170,20 +176,5 @@
       <email>bhale@gopivotal.com</email>
     </developer>
   </developers>
-
-  <distributionManagement>
-    <repository>
-      <id>eps-releases</id>
-      <name>Internal Releases</name>
-      <url>s3://eps/releases/</url>
-      <layout>default</layout>
-    </repository>
-    <snapshotRepository>
-      <id>eps-snapshots</id>
-      <name>Internal Snapshots</name>
-      <url>s3://eps/snapshots/</url>
-      <layout>default</layout>
-    </snapshotRepository>
-  </distributionManagement>
 
 </project>
